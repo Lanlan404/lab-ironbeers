@@ -28,6 +28,8 @@ app.get('/beers',(req,res,next)=>{
   .then(function(beersFromApi){
     console.log('Beers from the database: ');
     res.render('beers',{beersFromApi})
+    req.params.ids
+    console.log(req.params[3])
   })
   .catch(error => console.log(error));
   ;
@@ -35,11 +37,11 @@ app.get('/beers',(req,res,next)=>{
 
 app.get('/random-beer',(req,res,next)=>{
   punkAPI.getRandom()
-    .then(responseFromAPI => {
-    // your magic happens here
-
-    res.render('random-beer')
-  })
+    .then(function(randomBeer){
+      console.log('a random beer')
+      console.log(randomBeer)
+      res.render('random-beer',{randomBeer})
+    })
   .catch(error => console.log(error));
   
 })
